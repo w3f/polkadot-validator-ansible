@@ -17,8 +17,7 @@ readme: README.md
 # A list of the collection's content authors. Can be just the name or in the format 'Full Name <email> (url)
 # @nicks:irc/im.site#channel'
 authors:
-- Pantelis Ampatzoglou <pampatzoglou@gmail.com>
-- Federico Gimenez <>
+- W3F Infrastructure Team <devops@web3.foundation>
 
 # A short summary description of the collection
 description: Collection of roles and playbooks used by Web3 Foundation to interact with the validators.
