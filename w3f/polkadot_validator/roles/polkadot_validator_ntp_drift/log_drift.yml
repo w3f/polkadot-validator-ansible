@@ -1,0 +1,10 @@
+# get logs from validators. Defaults to getting all logs from all validators.
+# example: example: ansible-playbook log_drift.yml --extra-vars "target=validator-1"
+---
+-
+  hosts: "{{ target | default('ubuntu_18_04') }}"
+  gather_facts: true
+
+  roles:
+    - polkadot_validator_ntp_drift
+...

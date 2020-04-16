@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ntp_drift"
+      include_role:
+        name: "polkadot_validator_ntp_drift"

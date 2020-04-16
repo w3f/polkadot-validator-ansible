@@ -1,0 +1,13 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: ntp-drif-test-image
+    dockerfile: ./dockerfile.j2
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

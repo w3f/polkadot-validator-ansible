@@ -1,0 +1,7 @@
+---
+# tasks file for ntp_drift
+- name: Get drift
+  fetch:
+    src: /var/lib/ntp/ntp.drift
+    dest: drift-{{ inventory_hostname }}-{{ ansible_date_time.date }}:{{ ansible_date_time.time }}.log
+    flat: yes

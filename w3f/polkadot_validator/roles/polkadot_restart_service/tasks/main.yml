@@ -1,0 +1,6 @@
+---
+# tasks file for polkadot_restart_service
+- name: Check for single host and restart service
+  fail: msg="Single host check failed. Restart only one at a time."
+  when: "{{ play_hosts | length }} != 1"
+  notify: Restart Polkadot Service

@@ -1,0 +1,40 @@
+- name: Handle csv file
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: create a bucket
+      gcp_storage_bucket:
+        name: "w3f-ntp"
+        project: "polkadot-benchmarks"
+        auth_kind: serviceaccount
+        service_account_file: $GOOGLE_APPLICATION_CREDENTIALS_CONTENT
+        state: present
+
+    - name: download csv
+      gcp_storage_object:
+        action: download
+        bucket: "w3f-ntp"
+        src: "drift.csv"
+        dest: "drift.csv"
+        project: "polkadot-benchmarks"
+        auth_kind: serviceaccount
+        service_account_file: $GOOGLE_APPLICATION_CREDENTIALS_CONTENT
+        state: present
+        overwrite: yes
+
+    - name: execute csv drift script
+      script:
+        cmd: files/create_drift_csv.sh
+
+    - name: upload csv
+      gcp_storage_object:
+        action: upload
+        bucket: "w3f-ntp"
+        src: "drift.csv"
+        dest: "drift.csv"
+        project: "polkadot-benchmarks"
+        auth_kind: serviceaccount
+        service_account_file: $GOOGLE_APPLICATION_CREDENTIALS_CONTENT
+        state: present
+        overwrite: yes

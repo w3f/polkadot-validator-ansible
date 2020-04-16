@@ -1,0 +1,16 @@
+---
+# tasks file for polkadot_validator_get_logs
+- name: Create Logs
+  shell: "journalctl -u polkadot --no-pager --since '{{ log_time }} hour ago' > {{ ansible_date_time.iso8601 }}-{{ inventory_hostname }}.log"
+- name: Compress log file
+  archive:
+    path: "{{ ansible_date_time.iso8601 }}-{{ inventory_hostname }}.log"
+    remove: yes
+- name: Fetching the log
+  fetch:
+    src: "{{ ansible_date_time.iso8601 }}-{{ inventory_hostname }}.log.gz"
+    dest: "logs/{{ ansible_date_time.iso8601 }}-{{ inventory_hostname }}.log.gz"
+- name: Cleanup the log.gz file on srv
+  file:
+    path: "{{ ansible_date_time.iso8601 }}-{{ inventory_hostname }}.log.gz"
+    state: absent
