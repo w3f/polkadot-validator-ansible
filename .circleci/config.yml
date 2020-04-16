@@ -1,0 +1,14 @@
+ansible-galaxy collection build --force ./w3f/polkadot_validator
+
+version: 2
+
+jobs:
+  publish:
+    docker:
+      - image: web3f/ansible:v0.0.4
+
+    steps:
+      - checkout
+      - run:
+          name: Build collection
+          command: ansible-galaxy collection build --force ./w3f/polkadot_validator

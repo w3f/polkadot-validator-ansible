@@ -1,0 +1,7 @@
+# get logs from validators. Defaults to getting all logs from all validators.
+# example: ansible-playbook -i ../plugins/inventory/packet_net.py log_drift.yml
+---
+- hosts: "{{ target | default('ubuntu_18_04') }}"
+  gather_facts: true
+  roles:
+     - polkadot_validator_ntp_drift
