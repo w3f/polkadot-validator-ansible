@@ -1,1 +1,2 @@
-*.tar.gz1
+*.tar.gz
+./w3f/polkadot_validator/playbooks/logs

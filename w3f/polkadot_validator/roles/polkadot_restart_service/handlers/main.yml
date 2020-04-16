@@ -1,8 +1,0 @@
----
-# handlers file for polkadot_restart_service
-- name: Restart Polkadot Service
-  become: true
-  systemd:
-    name: polkadot.service
-    state: restarted
-    daemon_reload: yes
