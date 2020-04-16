@@ -1,3 +1,0 @@
----
-# vars file for polkadot_validator_get_logs
-log_time: "{{ set_time | default('2') }}"

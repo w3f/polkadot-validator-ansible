@@ -1,8 +1,0 @@
-# get status from a validator.
-# example using dynamic inventory: ansible-playbook -i ../plugins/inventory/packet_net.py validator_postmortem.yml --extra-vars "target=validator1-1"
----
-- hosts: '{{ target }}'
-  gather_facts: true
-  roles:
-     - polkadot_restart_service
-     - polkadot_validator_get_logs

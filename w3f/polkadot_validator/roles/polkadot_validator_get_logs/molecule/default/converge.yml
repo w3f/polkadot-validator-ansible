@@ -1,7 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include polkadot_validator_get_logs"
-      include_role:
-        name: "polkadot_validator_get_logs"
