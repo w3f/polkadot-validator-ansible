@@ -26,12 +26,6 @@ description: Collection of roles and playbooks used by Web3 Foundation to intera
 license:
 - Apache-2.0
 
-# A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
-# requirements as 'namespace' and 'name'
-tags:
-  - Web3 Foundation
-  - polkadot
-
 # The URL of the originating SCM repository
 repository: https://github.com/w3f/polkadot-validator-ansible
 

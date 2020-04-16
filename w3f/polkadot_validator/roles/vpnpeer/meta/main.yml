@@ -1,0 +1,5 @@
+galaxy_info:
+  author: Federico Gimenez
+  company: Web3 Foundation
+  license: license (Apache-2.0)
+  min_ansible_version: 2.9
