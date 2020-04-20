@@ -2,4 +2,4 @@
 - name: Converge
   hosts: public
   roles:
-    - role: polkadot-public
+    - role: polkadot_public

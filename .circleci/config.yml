@@ -5,6 +5,9 @@ ansibleIntegrationTest: &ansibleIntegrationTest
       - checkout
       - setup_remote_docker
       - run:
+          description: add dependency
+          command: pip install -r requirements.txt ansible-lint flake8 yamllint
+      - run:
           description: execute molecule tests for the ansible role at $ROLE_PATH
           command: |
             cd $ROLE_PATH
@@ -20,27 +23,27 @@ jobs:
 
   nodeExporterIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/node-exporter
+      ROLE_PATH: w3f/polkadot_validator/roles/node_exporter
     <<: *ansibleIntegrationTest
 
   polkadotCommonIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-common
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_common
     <<: *ansibleIntegrationTest
 
   polkadotPublicIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-public
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_public
     <<: *ansibleIntegrationTest
 
   polkadotValidatorIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-validator
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_validator
     <<: *ansibleIntegrationTest
 
   polkadotValidatorSessionInfoIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-validator-session-info
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_validator_session_info
     <<: *ansibleIntegrationTest
 
   vpnpeerIntegrationTest:
