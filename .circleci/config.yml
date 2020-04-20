@@ -17,7 +17,7 @@ ansibleIntegrationTest: &ansibleIntegrationTest
           description: execute molecule tests for the ansible role at $ROLE_PATH
           command: |
             cd $ROLE_PATH
-            molecule test
+            molecule test --destroy=never
 
 version: 2
 
