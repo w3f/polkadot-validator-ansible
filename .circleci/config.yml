@@ -1,0 +1,115 @@
+ansibleIntegrationTest: &ansibleIntegrationTest
+    docker:
+      - image: web3f/secure-validator-ci:v0.3.1
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          description: execute molecule tests for the ansible role at $ROLE_PATH
+          command: |
+            cd $ROLE_PATH
+            molecule test
+
+version: 2
+
+jobs:
+  commonIntegrationTest:
+    environment:
+      ROLE_PATH: w3f/polkadot_validator/roles/common
+    <<: *ansibleIntegrationTest
+
+  nodeExporterIntegrationTest:
+    environment:
+      ROLE_PATH: w3f/polkadot_validator/roles/node-exporter
+    <<: *ansibleIntegrationTest
+
+  polkadotCommonIntegrationTest:
+    environment:
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-common
+    <<: *ansibleIntegrationTest
+
+  polkadotPublicIntegrationTest:
+    environment:
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-public
+    <<: *ansibleIntegrationTest
+
+  polkadotValidatorIntegrationTest:
+    environment:
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-validator
+    <<: *ansibleIntegrationTest
+
+  polkadotValidatorSessionInfoIntegrationTest:
+    environment:
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-validator-session-info
+    <<: *ansibleIntegrationTest
+
+  vpnpeerIntegrationTest:
+    environment:
+      ROLE_PATH: w3f/polkadot_validator/roles/vpnpeer
+    <<: *ansibleIntegrationTest
+
+  vpnpeerSetupIntegrationTest:
+    environment:
+      ROLE_PATH: w3f/polkadot_validator/roles/vpnpeer-setup
+    <<: *ansibleIntegrationTest
+
+  publish:
+    docker:
+      - image: web3f/ansible:v0.0.4
+    steps:
+      - checkout
+      - run:
+          command: |
+            .scripts/publish.sh
+
+workflows:
+  version: 2
+  publish:
+    jobs:
+      - commonIntegrationTest:
+          filters:
+            tags:
+              only: /.*/
+      - nodeExporterIntegrationTest:
+          filters:
+            tags:
+              only: /.*/
+      - polkadotCommonIntegrationTest:
+          filters:
+            tags:
+              only: /.*/
+      - polkadotPublicIntegrationTest:
+          filters:
+            tags:
+              only: /.*/
+      - polkadotValidatorIntegrationTest:
+          filters:
+            tags:
+              only: /.*/
+      - polkadotValidatorSessionInfoIntegrationTest:
+          filters:
+            tags:
+              only: /.*/
+      - vpnpeerIntegrationTest:
+          filters:
+            tags:
+              only: /.*/
+      - vpnpeerSetupIntegrationTest:
+          filters:
+            tags:
+              only: /.*/
+      - publish:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+          requires:
+            - commonIntegrationTest
+            - nodeExporterIntegrationTest
+            - polkadotCommonIntegrationTest
+            - polkadotPublicIntegrationTest
+            - polkadotValidatorIntegrationTest
+            - polkadotValidatorSessionInfoIntegrationTest
+            - vpnpeerIntegrationTest
+            - vpnpeerSetupIntegrationTest
