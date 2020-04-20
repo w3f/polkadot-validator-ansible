@@ -1,5 +1,5 @@
 ---
-# tasks file for vpnpeer-setup
+# tasks file for vpnpeer_setup
 - name: get linux version
   command: uname -r
   register: uname

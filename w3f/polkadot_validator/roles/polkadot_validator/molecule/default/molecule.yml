@@ -3,8 +3,9 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
+lint: |
+  set -e
+  yamllint .
 platforms:
   - name: polkadot-validator-validator-node
     image: ubuntu:bionic
@@ -18,8 +19,9 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  playbooks:
+    converge: playbook.yml
   inventory:
-
     host_vars:
       polkadot-validator-validator-node:
         vpnpeer_address: 10.0.0.1
@@ -32,3 +34,4 @@ verifier:
   name: testinfra
   lint:
     name: flake8
+    enabled: true

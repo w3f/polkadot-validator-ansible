@@ -1,6 +1,6 @@
 ansibleIntegrationTest: &ansibleIntegrationTest
     docker:
-      - image: web3f/secure-validator-ci:v0.3.1
+      - image: web3f/secure-validator-ci:v0.3.2
     steps:
       - checkout
       - setup_remote_docker
@@ -8,7 +8,7 @@ ansibleIntegrationTest: &ansibleIntegrationTest
           description: execute molecule tests for the ansible role at $ROLE_PATH
           command: |
             cd $ROLE_PATH
-            molecule test
+            molecule test --destroy=never
 
 version: 2
 
@@ -20,27 +20,27 @@ jobs:
 
   nodeExporterIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/node-exporter
+      ROLE_PATH: w3f/polkadot_validator/roles/node_exporter
     <<: *ansibleIntegrationTest
 
   polkadotCommonIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-common
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_common
     <<: *ansibleIntegrationTest
 
   polkadotPublicIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-public
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_public
     <<: *ansibleIntegrationTest
 
   polkadotValidatorIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-validator
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_validator
     <<: *ansibleIntegrationTest
 
   polkadotValidatorSessionInfoIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot-validator-session-info
+      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_validator_session_info
     <<: *ansibleIntegrationTest
 
   vpnpeerIntegrationTest:
@@ -50,7 +50,7 @@ jobs:
 
   vpnpeerSetupIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/vpnpeer-setup
+      ROLE_PATH: w3f/polkadot_validator/roles/vpnpeer_setup
     <<: *ansibleIntegrationTest
 
   publish:
