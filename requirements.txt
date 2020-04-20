@@ -1,5 +1,0 @@
-ansible-lint
-flake8
-yamllint
-testinfra
-pytest
