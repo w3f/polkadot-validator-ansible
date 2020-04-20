@@ -5,7 +5,7 @@ driver:
   name: docker
 lint: |
   set -e
-  yamllint .  
+  yamllint .
 platforms:
   - name: polkadot-validator-validator-node
     image: ubuntu:bionic

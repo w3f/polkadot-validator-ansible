@@ -59,7 +59,7 @@ jobs:
 
   vpnpeerSetupIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/vpnpeer-setup
+      ROLE_PATH: w3f/polkadot_validator/roles/vpnpeer_setup
     <<: *ansibleIntegrationTest
 
   publish:
