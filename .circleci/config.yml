@@ -1,18 +1,9 @@
 ansibleIntegrationTest: &ansibleIntegrationTest
     docker:
-      - image: web3f/secure-validator-ci:v0.3.1
+      - image: web3f/secure-validator-ci:v0.3.2
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          description: upgrade pip
-          command: pip install --upgrade pip
-      - run:
-          description: update molecule
-          command: pip install --upgrade molecule
-      - run:
-          description: add dependency
-          command: pip install -r requirements.txt
       - run:
           description: execute molecule tests for the ansible role at $ROLE_PATH
           command: |
