@@ -15,42 +15,42 @@ version: 2
 jobs:
   commonIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/common
+      ROLE_PATH: roles/common
     <<: *ansibleIntegrationTest
 
   nodeExporterIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/node_exporter
+      ROLE_PATH: roles/node_exporter
     <<: *ansibleIntegrationTest
 
   polkadotCommonIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_common
+      ROLE_PATH: roles/polkadot_common
     <<: *ansibleIntegrationTest
 
   polkadotPublicIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_public
+      ROLE_PATH: roles/polkadot_public
     <<: *ansibleIntegrationTest
 
   polkadotValidatorIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_validator
+      ROLE_PATH: roles/polkadot_validator
     <<: *ansibleIntegrationTest
 
   polkadotValidatorSessionInfoIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/polkadot_validator_session_info
+      ROLE_PATH: roles/polkadot_validator_session_info
     <<: *ansibleIntegrationTest
 
   vpnpeerIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/vpnpeer
+      ROLE_PATH: roles/vpnpeer
     <<: *ansibleIntegrationTest
 
   vpnpeerSetupIntegrationTest:
     environment:
-      ROLE_PATH: w3f/polkadot_validator/roles/vpnpeer_setup
+      ROLE_PATH: roles/vpnpeer_setup
     <<: *ansibleIntegrationTest
 
   publish:
