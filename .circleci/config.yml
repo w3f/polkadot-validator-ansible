@@ -60,7 +60,7 @@ jobs:
       - checkout
       - run:
           command: |
-            .scripts/publish.sh
+            scripts/publish.sh
 
 workflows:
   version: 2
